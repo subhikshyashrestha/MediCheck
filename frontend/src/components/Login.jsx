@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const navigate = useNavigate()
 
   const handleLogin = async () => {
     try {
@@ -16,7 +18,7 @@ function Login() {
       if (response.ok) {
         localStorage.setItem('access', data.access)
         localStorage.setItem('refresh', data.refresh)
-        alert('Login successful!')
+        navigate('/dashboard')
       } else {
         setError('Invalid username or password')
       }
